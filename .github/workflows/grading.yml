@@ -1,1 +1,24 @@
-scripts to secure the repo
+name: Secure Repo
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  secure:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run security checks
+      run: |
+        # Install security tools
+        sudo apt-get update && sudo apt-get install -y some-security-tool
+
+        # Run security checks
+        some-security-tool scan
